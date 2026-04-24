@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROFIX GROUP KFT. — Építkezés Felsőfokon!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy-900: #091C33;
+  --navy-800: #0C2847;
+  --navy-700: #0F3461;
+  --navy-600: #154878;
+  --navy-500: #1B5E8A;
+  --navy-400: #2176AE;
+  --navy-300: #3A94CC;
+  --navy-200: #7FBDE4;
+  --navy-100: #C5E1F5;
+  --navy-50: #EBF4FB;
+  --white: #FFFFFF;
+  --gray-50: #F8F9FA;
+  --gray-100: #F1F3F5;
+  --gray-200: #E2E6EA;
+  --gray-300: #CDD3D9;
+  --gray-400: #A0AAB4;
+  --gray-500: #6C7A85;
+  --gray-600: #4A5568;
+  --gray-700: #2D3748;
+  --gray-800: #1A202C;
+  --accent: #D4A853;
+  --accent-light: #E8C97A;
+  --success: #27AE60;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --nav-h: 80px;
+  --shadow-sm: 0 1px 3px rgba(9,28,51,0.08);
+  --shadow-md: 0 4px 20px rgba(9,28,51,0.1);
+  --shadow-lg: 0 10px 40px rgba(9,28,51,0.15);
+  --shadow-xl: 0 20px 60px rgba(9,28,51,0.2);
+  --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --radius: 12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--gray-700);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; animation: pageIn 0.5s ease both; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(39,174,96,0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(39,174,96,0); }
+}
+
+/* NAVIGATION */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gray-200);
+  z-index: 1000;
+  transition: var(--transition);
+}
+.nav.scrolled { background: rgba(255,255,255,0.97); box-shadow: var(--shadow-sm); }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 52px; width: auto; }
+
+.nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+.nav-links a {
+  padding: 8px 18px; font-size: 0.92rem; font-weight: 500;
+  color: var(--gray-600); border-radius: 8px;
+  transition: var(--transition); letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--navy-700); background: var(--navy-50); }
+.nav-links a.active { color: var(--navy-600); font-weight: 600; }
+.nav-cta {
+  background: var(--navy-600) !important;
+  color: var(--white) !important;
+  font-weight: 600 !important;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  margin-left: 8px;
+}
+.nav-cta:hover { background: var(--navy-700) !important; }
+
+.mobile-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  padding: 8px; z-index: 1001;
+}
+.mobile-toggle span {
+  width: 24px; height: 2px; background: var(--navy-800);
+  transition: var(--transition); border-radius: 2px;
+}
+.mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* BUTTONS */
+.btn {
+  padding: 14px 32px; border-radius: 10px;
+  font-size: 0.95rem; font-weight: 600;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--navy-600); color: var(--white); }
+.btn-primary:hover { background: var(--navy-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-outline { border: 2px solid var(--navy-600); color: var(--navy-600); background: transparent; }
+.btn-outline:hover { background: var(--navy-600); color: var(--white); }
+.btn-white { background: var(--white); color: var(--navy-700); }
+.btn-white:hover { background: var(--gray-50); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* SECTION STYLING */
+.section { padding: 100px 0; }
+.section-dark { background: var(--navy-900); color: var(--white); }
+.section-light { background: var(--gray-50); }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--navy-400);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: ''; width: 28px; height: 2px;
+  background: var(--navy-400); border-radius: 2px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: var(--navy-900); line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-dark .section-title { color: var(--white); }
+.section-dark .section-label { color: var(--navy-200); }
+.section-dark .section-label::before { background: var(--navy-200); }
+.section-subtitle {
+  font-size: 1.1rem; color: var(--gray-500);
+  max-width: 560px; line-height: 1.7;
+}
+.section-dark .section-subtitle { color: var(--navy-200); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: var(--nav-h);
+  position: relative; overflow: hidden;
+  background: linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 40%, var(--navy-700) 100%);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 30%, rgba(33,118,174,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 15% 80%, rgba(33,118,174,0.08) 0%, transparent 50%);
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to top, var(--white), transparent);
+}
+.hero-pattern {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.15) 35px, rgba(255,255,255,0.15) 36px);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center; position: relative; z-index: 2;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 20px; border-radius: 100px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 0.82rem; font-weight: 600; color: var(--navy-200);
+  margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.08em;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge-dot {
+  width: 8px; height: 8px;
+  background: var(--success); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  line-height: 1.12; margin-bottom: 24px;
+  color: var(--white);
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero h1 .highlight { color: var(--navy-200); }
+.hero-desc {
+  font-size: 1.15rem; color: var(--navy-200); max-width: 480px;
+  margin-bottom: 40px; line-height: 1.8;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.hero-visual { position: relative; animation: fadeUp 0.8s 0.4s ease both; }
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 40px;
+  backdrop-filter: blur(10px);
+}
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 3rem; font-weight: 800;
+  color: var(--white); line-height: 1; margin-bottom: 6px;
+}
+.hero-stat-num span { color: var(--navy-300); }
+.hero-stat-label {
+  font-size: 0.85rem; color: var(--navy-300);
+  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+}
+.hero-stat-divider { grid-column: span 2; height: 1px; background: rgba(255,255,255,0.08); }
+.hero-trust {
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-trust-stars { display: flex; gap: 2px; }
+.hero-trust-stars svg { width: 18px; height: 18px; fill: var(--accent); }
+.hero-trust-text { font-size: 0.88rem; color: var(--navy-300); }
+
+/* SERVICES */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px; margin-top: 48px;
+}
+.service-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: 36px 28px;
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--navy-500), var(--navy-300));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--navy-100); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+  width: 56px; height: 56px; background: var(--navy-50);
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; transition: var(--transition);
+}
+.service-card:hover .service-icon { background: var(--navy-600); }
+.service-icon svg { width: 26px; height: 26px; color: var(--navy-600); transition: var(--transition); }
+.service-card:hover .service-icon svg { color: var(--white); }
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem; color: var(--navy-900); margin-bottom: 12px;
+}
+.service-card p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.7; }
+
+/* WHY US */
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; margin-top: 48px;
+}
+.why-features { display: flex; flex-direction: column; gap: 28px; }
+.why-feature { display: flex; gap: 20px; align-items: flex-start; padding: 24px; border-radius: var(--radius); transition: var(--transition); }
+.why-feature:hover { background: var(--gray-50); }
+.why-feature-icon {
+  width: 48px; height: 48px; min-width: 48px;
+  background: var(--navy-50); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.why-feature-icon svg { width: 22px; height: 22px; color: var(--navy-600); }
+.why-feature h4 { font-size: 1.05rem; color: var(--navy-900); margin-bottom: 4px; font-weight: 600; }
+.why-feature p { font-size: 0.92rem; color: var(--gray-500); }
+
+.why-visual { background: var(--navy-50); border-radius: 20px; padding: 48px; }
+.why-visual-inner { background: var(--white); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-md); }
+.why-counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.why-counter { text-align: center; padding: 20px; border-radius: 12px; background: var(--gray-50); }
+.why-counter-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--navy-700); line-height: 1; margin-bottom: 4px;
+}
+.why-counter-label { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  border-radius: 20px; padding: 64px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.05;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.15) 35px, rgba(255,255,255,0.15) 36px);
+}
+.cta-banner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--white); margin-bottom: 16px; position: relative;
+}
+.cta-banner p { color: var(--navy-200); font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; position: relative; }
+.cta-banner .btn { position: relative; }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 140px 0 80px;
+  background: linear-gradient(155deg, var(--navy-900), var(--navy-700));
+  position: relative; overflow: hidden; text-align: center;
+}
+.page-header::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.15) 35px, rgba(255,255,255,0.15) 36px);
+}
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: var(--white); margin-bottom: 12px; position: relative;
+}
+.page-header p { color: var(--navy-200); font-size: 1.1rem; max-width: 500px; margin: 0 auto; position: relative; }
+
+/* SERVICES DETAIL */
+.services-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+.service-detail-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 16px; padding: 40px;
+  transition: var(--transition); overflow: hidden;
+}
+.service-detail-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.service-detail-card .service-icon { margin-bottom: 24px; }
+.service-detail-card h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--navy-900); margin-bottom: 16px; }
+.service-detail-card p { color: var(--gray-500); margin-bottom: 20px; line-height: 1.8; }
+.service-detail-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.service-detail-card li { display: flex; align-items: center; gap: 10px; font-size: 0.92rem; color: var(--gray-600); }
+.service-detail-card li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--navy-400); min-width: 6px; }
+
+/* REFERENCES */
+.ref-group { margin-top: 48px; }
+.ref-group + .ref-group { margin-top: 72px; padding-top: 72px; border-top: 1px solid var(--gray-200); }
+.ref-group-header { margin-bottom: 40px; }
+.ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.ref-card { border-radius: 16px; overflow: hidden; background: var(--white); border: 1px solid var(--gray-200); transition: var(--transition); cursor: pointer; }
+.ref-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.ref-card-img {
+  position: relative; height: 240px; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy-100), var(--navy-50));
+  display: flex; align-items: center; justify-content: center;
+}
+.ref-card-img::before {
+  content: attr(data-label);
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--navy-200); opacity: 0.5;
+}
+.ref-card-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.ref-card:hover .ref-card-img img { transform: scale(1.06); }
+.ref-card-count {
+  position: absolute; top: 14px; right: 14px; z-index: 1;
+  background: rgba(9,28,51,0.75); color: var(--white);
+  font-size: 0.78rem; font-weight: 600;
+  padding: 6px 12px; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: 6px;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.ref-card-count svg { width: 13px; height: 13px; }
+.ref-card-body { padding: 24px; }
+.ref-card-tag { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy-400); margin-bottom: 8px; }
+.ref-card-body h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--navy-900); margin-bottom: 8px; }
+.ref-card-body p { font-size: 0.9rem; color: var(--gray-500); }
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(9,28,51,0.96);
+  display: none; align-items: center; justify-content: center;
+  padding: 40px;
+}
+.lightbox.open { display: flex; animation: lightboxIn 0.25s ease; }
+@keyframes lightboxIn { from { opacity: 0 } to { opacity: 1 } }
+.lightbox-content {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  max-width: 92vw; position: relative; z-index: 1;
+}
+.lightbox-img {
+  max-width: 92vw; max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: var(--shadow-xl);
+  object-fit: contain; background: var(--navy-900);
+}
+.lightbox-meta {
+  display: flex; gap: 20px; align-items: center;
+  color: var(--navy-200); font-size: 0.9rem; text-align: center;
+}
+.lightbox-title { font-family: var(--font-display); color: var(--white); font-size: 1.05rem; }
+.lightbox-counter { font-variant-numeric: tabular-nums; font-weight: 500; }
+.lightbox-btn {
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  font-size: 1.6rem; line-height: 1;
+  transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  z-index: 2;
+}
+.lightbox-btn:hover { background: rgba(255,255,255,0.18); }
+.lightbox-close { top: 24px; right: 24px; font-size: 1.8rem; }
+.lightbox-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 24px; top: 50%; transform: translateY(-50%); }
+body.lightbox-open { overflow: hidden; }
+
+/* ABOUT */
+.about-intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+.about-text h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.2rem); color: var(--navy-900); margin-bottom: 20px; line-height: 1.25; }
+.about-text p { color: var(--gray-600); margin-bottom: 16px; line-height: 1.8; }
+.about-text p strong { color: var(--navy-700); font-weight: 600; }
+.about-lead { font-size: 1.05rem; color: var(--gray-700) !important; }
+.about-closing {
+  font-family: var(--font-display);
+  font-size: 1.1rem !important;
+  color: var(--navy-700) !important;
+  font-style: italic;
+  padding: 12px 0 12px 20px;
+  border-left: 3px solid var(--navy-400);
+  margin-top: 24px !important;
+  margin-bottom: 0 !important;
+  background: linear-gradient(90deg, var(--navy-50), transparent);
+}
+
+/* ABOUT PHOTO */
+.about-photo-wrap { position: relative; padding: 18px 18px 18px 18px; }
+.about-photo-wrap::before {
+  content: ''; position: absolute;
+  top: 0; left: 0;
+  width: 62%; height: 55%;
+  border: 2px solid var(--navy-300);
+  border-radius: 20px;
+  opacity: 0.5;
+}
+.about-photo-wrap::after {
+  content: ''; position: absolute;
+  bottom: 0; right: 0;
+  width: 55%; height: 45%;
+  background: linear-gradient(135deg, var(--navy-100), var(--navy-50));
+  border-radius: 20px;
+  z-index: 0;
+}
+.about-photo {
+  position: relative; z-index: 1;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--navy-900);
+}
+.about-photo img {
+  width: 100%; display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.about-photo:hover img { transform: scale(1.04); }
+
+.about-values { background: var(--navy-50); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 64px; }
+.about-value { background: var(--white); border-radius: 12px; padding: 24px; text-align: center; box-shadow: var(--shadow-sm); }
+.about-value-icon {
+  width: 44px; height: 44px; margin: 0 auto 12px;
+  background: var(--navy-50); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.about-value-icon svg { width: 20px; height: 20px; color: var(--navy-600); }
+.about-value h4 { font-size: 0.95rem; color: var(--navy-900); margin-bottom: 4px; font-weight: 600; }
+.about-value p { font-size: 0.82rem; color: var(--gray-500); }
+
+.timeline { max-width: 700px; margin: 48px auto 0; position: relative; }
+.timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 24px; width: 2px; background: var(--navy-100); }
+.timeline-item { display: flex; gap: 24px; margin-bottom: 36px; position: relative; }
+.timeline-dot {
+  width: 50px; min-width: 50px; height: 50px;
+  background: var(--navy-600); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.75rem;
+  color: var(--white); font-weight: 700; z-index: 1;
+}
+.timeline-content { background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; flex: 1; }
+.timeline-content h4 { font-size: 1rem; color: var(--navy-900); margin-bottom: 6px; }
+.timeline-content p { font-size: 0.9rem; color: var(--gray-500); }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.88rem; font-weight: 600; color: var(--navy-900); }
+.form-group input, .form-group textarea, .form-group select {
+  padding: 14px 18px; border-radius: 10px;
+  border: 1px solid var(--gray-200);
+  font-family: var(--font-body); font-size: 0.95rem;
+  color: var(--gray-700); background: var(--white);
+  transition: var(--transition); outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--navy-400); box-shadow: 0 0 0 3px rgba(33,118,174,0.1);
+}
+.form-group textarea { min-height: 140px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.contact-info { display: flex; flex-direction: column; gap: 28px; }
+.contact-info-card { display: flex; gap: 16px; align-items: flex-start; padding: 24px; background: var(--gray-50); border-radius: var(--radius); }
+.contact-info-icon {
+  width: 48px; height: 48px; min-width: 48px;
+  background: var(--navy-600); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-info-icon svg { width: 20px; height: 20px; color: var(--white); }
+.contact-info-card h4 { font-size: 0.95rem; color: var(--navy-900); margin-bottom: 2px; font-weight: 600; }
+.contact-info-card p { font-size: 0.92rem; color: var(--gray-500); }
+.contact-info-card a { color: var(--navy-500); font-weight: 500; }
+.contact-info-card a:hover { color: var(--navy-700); }
+.contact-map {
+  margin-top: 8px; height: 220px;
+  background: var(--navy-50); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--gray-200); color: var(--gray-400); font-size: 0.9rem;
+}
+
+/* FOOTER */
+.footer { background: var(--navy-900); color: var(--navy-200); padding: 64px 0 0; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand img { height: 44px; margin-bottom: 16px; filter: brightness(0) invert(1); }
+.footer-brand p { font-size: 0.9rem; color: var(--navy-300); max-width: 280px; line-height: 1.7; }
+.footer-col h4 { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white); margin-bottom: 20px; }
+.footer-col a { display: block; font-size: 0.9rem; color: var(--navy-300); margin-bottom: 10px; transition: var(--transition); }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { padding: 24px 0; text-align: center; font-size: 0.82rem; color: var(--navy-400); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-grid, .why-grid, .about-intro, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid, .ref-grid, .about-values { grid-template-columns: 1fr 1fr; }
+  .services-detail-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hero-visual { order: -1; }
+  .about-photo-wrap { max-width: 480px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .services-grid, .ref-grid, .about-values { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+    gap: 8px; transform: translateX(100%); transition: transform 0.4s ease;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 1.1rem; padding: 12px 24px; }
+  .mobile-toggle { display: flex; }
+  .section { padding: 64px 0; }
+  .cta-banner { padding: 40px 24px; }
+  .hero { min-height: auto; padding: 120px 0 80px; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-num { font-size: 2.2rem; }
+  .about-visual { grid-template-columns: 1fr; }
+  .lightbox { padding: 16px; }
+  .lightbox-btn { width: 44px; height: 44px; font-size: 1.4rem; }
+  .lightbox-close { top: 12px; right: 12px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .lightbox-img { max-height: 70vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" data-page="home">
+      <img src="pictures/fulllogo_transparent_nobuffer.png" alt="PROFIX GROUP KFT.">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" data-page="home" class="active">Főoldal</a></li>
+      <li><a href="#" data-page="services">Szolgáltatások</a></li>
+      <li><a href="#" data-page="portfolio">Referenciák</a></li>
+      <li><a href="#" data-page="about">Rólunk</a></li>
+      <li><a href="#" data-page="contact" class="nav-cta">Kapcsolat</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════ FŐOLDAL ══════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Elérhető vagyunk új projektekre
+          </div>
+          <h1>Építkezés<br><span class="highlight">Felsőfokon!</span></h1>
+          <p class="hero-desc">A PROFIX GROUP KFT. több évtizedes tapasztalattal áll ügyfelei rendelkezésére az építőipar minden területén. Megbízhatóság, minőség, precizitás.</p>
+          <div class="hero-actions">
+            <a href="#" class="btn btn-white" data-page="contact">Ajánlatot kérek →</a>
+            <a href="#" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white);" data-page="portfolio">Referenciáink</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <div class="hero-stat-num">15<span>+</span></div>
+                <div class="hero-stat-label">Év Tapasztalat</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">250<span>+</span></div>
+                <div class="hero-stat-label">Projekt</div>
+              </div>
+              <div class="hero-stat-divider"></div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">98<span>%</span></div>
+                <div class="hero-stat-label">Elégedettség</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">30<span>+</span></div>
+                <div class="hero-stat-label">Szakember</div>
+              </div>
+            </div>
+            <div class="hero-trust">
+              <div class="hero-trust-stars">
+                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <span class="hero-trust-text">5.0 — Ügyfeleink értékelése</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Szolgáltatásaink</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <h2 class="section-title">Komplex építőipari<br>megoldások</h2>
+          <p class="section-subtitle">Teljes körű szolgáltatást nyújtunk a tervezéstől a kulcsrakész átadásig.</p>
+        </div>
+        <a href="#" class="btn btn-outline" data-page="services">Összes szolgáltatás →</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 7v1a3 3 0 006 0V7m0 0V3h4v4m0 0v1a3 3 0 006 0V7m0 0V3M6 21V10m12 11V10"/></svg>
+          </div>
+          <h3>Új építés</h3>
+          <p>Családi házak, társasházak és kereskedelmi épületek generálkivitelezése a legmagasabb minőségi szabványok szerint.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Felújítás</h3>
+          <p>Teljes körű lakás- és épületfelújítás: fürdőszoba, konyha, homlokzat, tetőfedés és belső átalakítás.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="8" rx="1"/><path d="M17 14v7M7 14v7M2 6l4-3h12l4 3M12 6v8"/></svg>
+          </div>
+          <h3>Ipari építés</h3>
+          <p>Raktárak, üzemcsarnokok, kereskedelmi létesítmények tervezése és kivitelezése professzionális minőségben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-label">Miért minket?</div>
+      <h2 class="section-title">A minőség nem kompromisszum</h2>
+      <p class="section-subtitle">Megbízható partnerként állunk minden projekt mögött.</p>
+      <div class="why-grid">
+        <div class="why-features">
+          <div class="why-feature">
+            <div class="why-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Garancia és minőség</h4>
+              <p>Minden munkánkra garanciát vállalunk, kizárólag minősített anyagokkal dolgozunk.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Határidőre dolgozunk</h4>
+              <p>Pontos időbeosztás és projektmenedzsment biztosítja a határidők betartását.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4>Tapasztalt csapat</h4>
+              <p>30+ fős szakember csapatunk minden szakterületet lefed.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <h4>Transzparens árazás</h4>
+              <p>Részletes, tételes árajánlat rejtett költségek nélkül.</p>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <div class="why-visual-inner">
+            <div class="why-counter-grid">
+              <div class="why-counter"><div class="why-counter-num">15+</div><div class="why-counter-label">Év tapasztalat</div></div>
+              <div class="why-counter"><div class="why-counter-num">250+</div><div class="why-counter-label">Befejezett projekt</div></div>
+              <div class="why-counter"><div class="why-counter-num">98%</div><div class="why-counter-label">Ügyfél-elégedettség</div></div>
+              <div class="why-counter"><div class="why-counter-num">30+</div><div class="why-counter-label">Szakember</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Tervezzen velünk!</h2>
+        <p>Kérjen ingyenes helyszíni felmérést és személyre szabott árajánlatot.</p>
+        <a href="#" class="btn btn-white" data-page="contact">Ingyenes árajánlat →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ SZOLGÁLTATÁSOK ══════════ -->
+<div class="page" id="page-services">
+  <div class="page-header">
+    <div class="container">
+      <h1>Szolgáltatásaink</h1>
+      <p>Teljes körű építőipari szolgáltatás a tervezéstől a kulcsrakész átadásig</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="services-detail-grid">
+        <div class="service-detail-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="4" x2="9" y2="9"/><line x1="15" y1="4" x2="15" y2="9"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="18" y1="9" x2="18" y2="15"/><line x1="9" y1="15" x2="9" y2="20"/><line x1="15" y1="15" x2="15" y2="20"/></svg></div>
+          <h3>Kőműves munkák</h3>
+          <p>Teljes körű kőműves munkák precíz kivitelezésben — alapozástól a szerkezetépítésig.</p>
+          <ul><li>Alapozás, sávalap, lemezalap</li><li>Téglafalazás, válaszfalak</li><li>Belső és külső vakolás</li><li>Födémek, áthidalók, boltívek</li><li>Kémény- és kürtőépítés</li></ul>
+        </div>
+        <div class="service-detail-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V10z"/><path d="M7 13h10M7 17h10"/></svg></div>
+          <h3>Homlokzati hőszigetelés (EPS rendszerek)</h3>
+          <p>Szakszerű EPS rendszerű homlokzati hőszigetelés — energiahatékony, esztétikus, tartós.</p>
+          <ul><li>EPS táblás hőszigetelés</li><li>Grafitos EPS rendszerek</li><li>Üvegszövet beágyazás, dűbelezés</li><li>Alapozó- és nemesvakolat</li><li>Lábazati szigetelés, díszprofilok</li></ul>
+        </div>
+        <div class="service-detail-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+          <h3>Hidegburkolás</h3>
+          <p>Csempézés, járólapozás és kőburkolás — precíz fugázással, tartós eredménnyel.</p>
+          <ul><li>Csempézés, járólapozás</li><li>Fürdőszoba és konyha burkolás</li><li>Nagyméretű lapok, mozaikok</li><li>Kül- és beltéri kőburkolat</li><li>Vízszigetelés burkolás alá</li></ul>
+        </div>
+        <div class="service-detail-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="5" rx="0.5"/><rect x="13" y="4" width="8" height="5" rx="0.5"/><rect x="3" y="10" width="5" height="5" rx="0.5"/><rect x="10" y="10" width="11" height="5" rx="0.5"/><rect x="3" y="16" width="11" height="5" rx="0.5"/><rect x="16" y="16" width="5" height="5" rx="0.5"/></svg></div>
+          <h3>Térkövezés</h3>
+          <p>Tartós, esztétikus térkövezett felületek — kocsibeállók, kerti utak, udvarok.</p>
+          <ul><li>Térkő lerakás (beton, mészkő)</li><li>Tükörkészítés, ágyazás</li><li>Szegélykő, vízelvezetés</li><li>Kocsibeállók, kerti utak</li><li>Udvarok, teraszok kialakítása</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-light">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Kérdése van?</h2>
+        <p>Ingyenes konzultációt biztosítunk minden érdeklődő számára.</p>
+        <a href="#" class="btn btn-white" data-page="contact">Kapcsolatfelvétel →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ REFERENCIÁK ══════════ -->
+<div class="page" id="page-portfolio">
+  <div class="page-header">
+    <div class="container">
+      <h1>Referenciáink</h1>
+      <p>Büszkék vagyunk minden egyes elkészült projektünkre</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="ref-group">
+        <div class="ref-group-header">
+          <div class="section-label">Hidegburkolás</div>
+          <h2 class="section-title">Burkolási munkáink</h2>
+          <p class="section-subtitle">Kattintson egy projektre a teljes fotógaléria megtekintéséhez.</p>
+        </div>
+        <div class="ref-grid">
+          <div class="ref-card" data-gallery="0">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>6 fotó</span>
+              <img src="burkolas/burkolas-munka-1/att.0-DaDzz3XdCfNum1qZ5Ju_Ja1IBfi_IcfM2u5dynfCY.JPG" alt="Burkolási munka 1">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 1</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="1">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>3 fotó</span>
+              <img src="burkolas/burkolas-munka-2/att.0DLjCCDdrbdlMkmwE8NA3LQrU7Ygkreukgkleu6SMgo.JPG" alt="Burkolási munka 2">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 2</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="2">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>3 fotó</span>
+              <img src="burkolas/burkolas-munka-3/att.1pefS_AnDvtba8yhE4UJO_DtasH4UmnlvEX_d-g2QJk.JPG" alt="Burkolási munka 3">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 3</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="3">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>4 fotó</span>
+              <img src="burkolas/burkolas-munka-4/att.6nC46Yu_0t3QetnjreuXOaKeJ5oGKoIPKirvf3W64NI.JPG" alt="Burkolási munka 4">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 4</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="4">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>10 fotó</span>
+              <img src="burkolas/burkolas-munka-5/att.HU9qw_FHvpYBORGcpb_IUXk1I5Zy93ng-vNyS5IlMTI.JPG" alt="Burkolási munka 5">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 5</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="5">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>5 fotó</span>
+              <img src="burkolas/burkolas-munka-6/att.dYoUfRppDQFF5PuuBJRpw5y9hFmOQKrgejnBBtB_S-8.JPG" alt="Burkolási munka 6">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 6</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="6">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>3 fotó</span>
+              <img src="burkolas/burkolas-munka-7/att.C6CK-0rnS2Rl7vPWzoXveOQ7HaDp6xnaML3Rh2YwHeA.JPG" alt="Burkolási munka 7">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 7</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-light">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Az Ön projektje a következő?</h2>
+        <p>Vegye fel velünk a kapcsolatot, és valósítsuk meg együtt elképzeléseit!</p>
+        <a href="#" class="btn btn-white" data-page="contact">Beszéljünk! →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ RÓLUNK ══════════ -->
+<div class="page" id="page-about">
+  <div class="page-header">
+    <div class="container">
+      <h1>Rólunk</h1>
+      <p>Ismerjék meg a PROFIX GROUP KFT. történetét és csapatát</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="about-intro">
+        <div class="about-photo-wrap">
+          <div class="about-photo">
+            <img src="pictures/5984.png" alt="ProFix Group Kft. — Építkezés felsőfokon">
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">Bemutatkozás</div>
+          <h2>ProFix Group Kft. —<br>Építkezés felsőfokon</h2>
+          <p class="about-lead">A ProFix Group Kft. megbízható partner az építőiparban, ahol a precizitás, a szakértelem és a korrekt kivitelezés alapérték. Célunk, hogy ügyfeleink számára hosszú távon is értékálló, minőségi munkát adjunk át – határidőre és átlátható feltételek mellett.</p>
+          <p>Fő tevékenységi köreink közé tartoznak a <strong>kőműves munkák</strong>, a <strong>homlokzati hőszigetelés</strong> (különös tekintettel az EPS rendszerek szakszerű kivitelezésére), valamint a <strong>hidegburkolás</strong>. Munkáink során kiemelt figyelmet fordítunk a pontos kivitelezésre, a megfelelő anyaghasználatra és a részletek precíz kidolgozására.</p>
+          <p>Csapatunk tapasztalt szakemberekből áll, akik napi szinten bizonyítják, hogy a minőség és a hatékonyság kéz a kézben járhat. Legyen szó családi házról, felújításról vagy nagyobb kivitelezési projektről, minden munkát ugyanazzal az elkötelezettséggel végzünk.</p>
+          <p>A ProFix Group Kft. nem csupán kivitelező, hanem partner is az építkezés teljes folyamatában – a tervezéstől a megvalósításig.</p>
+          <p class="about-closing">Válassza a ProFix Group Kft.-t, ha biztos alapokra szeretne építkezni.</p>
+        </div>
+      </div>
+      <div class="about-values">
+        <div class="about-value">
+          <div class="about-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>Megbízhatóság</h4><p>Amit ígérünk, teljesítjük</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h4>Minőség</h4><p>Csak a legjobb anyagok</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h4>Csapatmunka</h4><p>Együtt erősebbek vagyunk</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h4>Pontosság</h4><p>Határidőre és költségkereten belül</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-light">
+    <div class="container" style="text-align:center">
+      <div class="section-label" style="justify-content:center">Mérföldkövek</div>
+      <h2 class="section-title">Fejlődésünk útja</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot">ʼ10</div><div class="timeline-content"><h4>Cégalapítás</h4><p>A PROFIX GROUP KFT. megalapítása 5 fős csapattal.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot">ʼ14</div><div class="timeline-content"><h4>Növekedés</h4><p>Csapatunk 15 főre bővült, megkezdtük az új építési projekteket.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot">ʼ18</div><div class="timeline-content"><h4>Ipari szegmens</h4><p>Belépés az ipari és kereskedelmi építés piacára.</p></div></div>
+        <div class="timeline-item"><div class="timeline-dot">ʼ22</div><div class="timeline-content"><h4>250. projekt</h4><p>Elérjük a 250. sikeres projektet, csapatunk 30+ fősre bővül.</p></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ KAPCSOLAT ══════════ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="container">
+      <h1>Kapcsolat</h1>
+      <p>Vegye fel velünk a kapcsolatot — örömmel állunk rendelkezésére</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="section-label">Írjon nekünk</div>
+          <h2 class="section-title" style="margin-bottom:8px">Ajánlatkérés</h2>
+          <p class="section-subtitle" style="margin-bottom:32px">Töltse ki az űrlapot és 24 órán belül felvesszük Önnel a kapcsolatot.</p>
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group"><label>Név *</label><input type="text" placeholder="Teljes neve"></div>
+              <div class="form-group"><label>Telefonszám *</label><input type="tel" placeholder="+36 xx xxx xxxx"></div>
+            </div>
+            <div class="form-group"><label>E-mail cím *</label><input type="email" placeholder="pelda@email.hu"></div>
+            <div class="form-group">
+              <label>Projekt típusa</label>
+              <select><option value="">Válasszon...</option><option>Új építés</option><option>Felújítás</option><option>Ipari / Kereskedelmi építés</option><option>Szigetelés / Homlokzat</option><option>Gépészeti munkák</option><option>Tervezés / Tanácsadás</option><option>Egyéb</option></select>
+            </div>
+            <div class="form-group"><label>Üzenet</label><textarea placeholder="Írja le projektje részleteit, kérdéseit..."></textarea></div>
+            <button class="btn btn-primary" style="align-self:flex-start" onclick="alert('Köszönjük megkeresését! Hamarosan felvesszük Önnel a kapcsolatot.')">Üzenet küldése →</button>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><h4>Irodánk</h4><p>1234 Budapest,<br>Minta utca 56.</p></div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div><h4>Telefonszám</h4><p><a href="tel:+3611234567">+36 1 123 4567</a></p><p style="font-size:0.82rem;margin-top:2px">H-P: 8:00 – 17:00</p></div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><h4>E-mail</h4><p><a href="mailto:info@profixgroup.hu">info@profixgroup.hu</a></p></div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><h4>Nyitvatartás</h4><p>Hétfő – Péntek: 8:00 – 17:00<br>Szombat: Előzetes egyeztetéssel<br>Vasárnap: Zárva</p></div>
+          </div>
+          <div class="contact-map"><span>🗺️ Itt helyezhető el a Google Térkép</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="pictures/fulllogo_transparent_nobuffer.png" alt="PROFIX GROUP KFT.">
+        <p>Építkezés Felsőfokon! Több mint 15 éve nyújtunk megbízható, minőségi építőipari szolgáltatásokat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Oldalak</h4>
+        <a href="#" data-page="home">Főoldal</a>
+        <a href="#" data-page="services">Szolgáltatások</a>
+        <a href="#" data-page="portfolio">Referenciák</a>
+        <a href="#" data-page="about">Rólunk</a>
+        <a href="#" data-page="contact">Kapcsolat</a>
+      </div>
+      <div class="footer-col">
+        <h4>Szolgáltatások</h4>
+        <a href="#" data-page="services">Új építés</a>
+        <a href="#" data-page="services">Felújítás</a>
+        <a href="#" data-page="services">Ipari építés</a>
+        <a href="#" data-page="services">Szigetelés</a>
+        <a href="#" data-page="services">Tervezés</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elérhetőség</h4>
+        <a href="tel:+3611234567">+36 1 123 4567</a>
+        <a href="mailto:info@profixgroup.hu">info@profixgroup.hu</a>
+        <a>Budapest, Minta u. 56.</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 PROFIX GROUP KFT. Minden jog fenntartva.</div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galéria">
+  <button class="lightbox-btn lightbox-close" id="lbClose" aria-label="Bezárás">×</button>
+  <button class="lightbox-btn lightbox-prev" id="lbPrev" aria-label="Előző kép">‹</button>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <div class="lightbox-meta">
+      <span class="lightbox-title" id="lbTitle"></span>
+      <span class="lightbox-counter"><span id="lbIdx">1</span> / <span id="lbTotal">1</span></span>
+    </div>
+  </div>
+  <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Következő kép">›</button>
+</div>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('[data-page]');
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinksContainer = document.getElementById('navLinks');
+
+function navigateTo(pageName) {
+  pages.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageName);
+  if (target) {
+    target.classList.add('active');
+    target.style.animation = 'none';
+    target.offsetHeight;
+    target.style.animation = '';
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.remove('active');
+    if (a.dataset.page === pageName && !a.classList.contains('nav-cta')) a.classList.add('active');
+  });
+  navLinksContainer.classList.remove('open');
+  mobileToggle.classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('click', e => { e.preventDefault(); navigateTo(link.dataset.page); });
+});
+
+mobileToggle.addEventListener('click', () => {
+  mobileToggle.classList.toggle('open');
+  navLinksContainer.classList.toggle('open');
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeUp 0.6s ease both';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.service-card, .service-detail-card, .ref-card, .why-feature, .contact-info-card, .timeline-item, .about-value').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+
+/* GALLERIES */
+const BURKOLAS = 'burkolas/';
+const galleries = [
+  { title: 'Burkolási munka 1', photos: [
+    'burkolas-munka-1/att.0-DaDzz3XdCfNum1qZ5Ju_Ja1IBfi_IcfM2u5dynfCY.JPG',
+    'burkolas-munka-1/att.5dpXXiQpbHXktPyPMB0qd0Rx88M3fE3-EntGeU2f17Y.JPG',
+    'burkolas-munka-1/att.IuAmGNJ7jgeDplQmdbi_1BLmx-vUAxnXGb81U12_h4I.JPG',
+    'burkolas-munka-1/att.OUr57-RspUjvQqpUqV_YLSj0b-0fnugZMy6K1g6dgfE.JPG',
+    'burkolas-munka-1/att.ScO1KonaqhkV4qo_wlYlNDBxYJ4XASQcQROi6EM-Cr8.JPG',
+    'burkolas-munka-1/att.w0TpBLbdkAzxg9yyqRu4WVz61x49_rqLss4SB_XSR7A.JPG',
+  ]},
+  { title: 'Burkolási munka 2', photos: [
+    'burkolas-munka-2/att.0DLjCCDdrbdlMkmwE8NA3LQrU7Ygkreukgkleu6SMgo.JPG',
+    'burkolas-munka-2/att.0pPvDvvj0iq--gyUjhf8HfhpBPnm8IHd4jnDkTXDqt4.JPG',
+    'burkolas-munka-2/att._oKQEvmWZrZ6x2Os8IYRa0I9z4NOISY8hya79xds3Bo.JPG',
+  ]},
+  { title: 'Burkolási munka 3', photos: [
+    'burkolas-munka-3/att.1pefS_AnDvtba8yhE4UJO_DtasH4UmnlvEX_d-g2QJk.JPG',
+    'burkolas-munka-3/att.S7kwudcq9xUbVuCPZ1byg09uY9X9eb5h_qZjdZj3tuI.JPG',
+    'burkolas-munka-3/att.iDTuLehyEYIvQqgGpEHikU9iheVBOFZloTfEJt3LnHQ.JPG',
+  ]},
+  { title: 'Burkolási munka 4', photos: [
+    'burkolas-munka-4/att.6nC46Yu_0t3QetnjreuXOaKeJ5oGKoIPKirvf3W64NI.JPG',
+    'burkolas-munka-4/att.IBOJ5DQkuiUuCROpa2Mh_jhvb6o78-5yBW0-dvNHUg0.JPG',
+    'burkolas-munka-4/att.Nn1kcSdu6KbQz9VRe_7cHKAPbQ1KcPbWERGaPEf43gA.JPG',
+    'burkolas-munka-4/att.brx7ezBfeh5RAKJ90BuBA6uJc1osH1HDlBvPe4Tvo1s.JPG',
+  ]},
+  { title: 'Burkolási munka 5', photos: [
+    'burkolas-munka-5/att.HU9qw_FHvpYBORGcpb_IUXk1I5Zy93ng-vNyS5IlMTI.JPG',
+    'burkolas-munka-5/att.Q2nT26h_1_R4cHGVaZHTf3BAcZCtAJwZdpZ5PDi6BmQ.JPG',
+    'burkolas-munka-5/att.QV2L5EvfFLTT_bMpCYdzETIYS6LeNezAVse2EP56y14.JPG',
+    'burkolas-munka-5/att.RA7Rj63vwpo6Cp_Es9PiE2NdwAvKCvFrBmst30b8yZk.JPG',
+    'burkolas-munka-5/att.VKDcxrnbRBRrKcNcCQhsG8oXxSQdmZEHgvfS80Ct5AU.JPG',
+    'burkolas-munka-5/att.VgJXHVdb8S35z9V5N4-lXXchuPLFTYDrXnBdiJJBGp4.JPG',
+    'burkolas-munka-5/att.bHnCxF1o24w0AAh37IzLRUNYMkZll-FJc7pgEP0uNYg.JPG',
+    'burkolas-munka-5/att.rdIbJYoLTecmWxMaBW6i1JrfkDjbleczgIZU3sTm-Gg.JPG',
+    'burkolas-munka-5/att.shZIICx8I_-YwBe_dQqaoriNtWVV-YOayTrlldpekDY.JPG',
+    'burkolas-munka-5/att.yGJT60RwIkjWW7COJa2nKQY18Ah4OTv-RbumGEjizpw.JPG',
+  ]},
+  { title: 'Burkolási munka 6', photos: [
+    'burkolas-munka-6/att.dYoUfRppDQFF5PuuBJRpw5y9hFmOQKrgejnBBtB_S-8.JPG',
+    'burkolas-munka-6/att.fZUslLjoPVJw4rRqTkMb0ZHes9ZFTY1uDOliW2vW8wI.JPG',
+    'burkolas-munka-6/att.hZYr9mZy4lQRfpxb4_bDye_YQ74Y8ICOxvXW0KYkuqE.JPG',
+    'burkolas-munka-6/att.mRg_IeFxv-KXu7CdKCKo7lfmldKChmVwkEClUwYsoR0.JPG',
+    'burkolas-munka-6/att.wjPxOmd2xyNgPoRrUptU_tDXSnKc8stn4S9BSM5W2IU.JPG',
+  ]},
+  { title: 'Burkolási munka 7', photos: [
+    'burkolas-munka-7/att.C6CK-0rnS2Rl7vPWzoXveOQ7HaDp6xnaML3Rh2YwHeA.JPG',
+    'burkolas-munka-7/att.CllGuKeuH5esnOEw0cDD04VFvgd3CJ649WTK0sF_iu8.JPG',
+    'burkolas-munka-7/att.NLvnxx6NLt0mopS-YYC5f9Tra1n96sXbNEsbElO2Nq8.JPG',
+  ]},
+];
+
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbTitle = document.getElementById('lbTitle');
+const lbIdx = document.getElementById('lbIdx');
+const lbTotal = document.getElementById('lbTotal');
+let galIdx = 0, photoIdx = 0;
+
+function renderPhoto() {
+  const g = galleries[galIdx];
+  lbImg.src = BURKOLAS + g.photos[photoIdx];
+  lbImg.alt = g.title + ' — ' + (photoIdx + 1) + '. fotó';
+  lbTitle.textContent = g.title;
+  lbIdx.textContent = photoIdx + 1;
+  lbTotal.textContent = g.photos.length;
+}
+function openGallery(i) {
+  galIdx = i; photoIdx = 0;
+  renderPhoto();
+  lightbox.classList.add('open');
+  document.body.classList.add('lightbox-open');
+}
+function closeGallery() {
+  lightbox.classList.remove('open');
+  document.body.classList.remove('lightbox-open');
+}
+function nextPhoto() {
+  const n = galleries[galIdx].photos.length;
+  photoIdx = (photoIdx + 1) % n;
+  renderPhoto();
+}
+function prevPhoto() {
+  const n = galleries[galIdx].photos.length;
+  photoIdx = (photoIdx - 1 + n) % n;
+  renderPhoto();
+}
+
+document.querySelectorAll('.ref-card[data-gallery]').forEach(card => {
+  card.addEventListener('click', () => openGallery(+card.dataset.gallery));
+});
+document.getElementById('lbClose').addEventListener('click', closeGallery);
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); prevPhoto(); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); nextPhoto(); });
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeGallery(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeGallery();
+  else if (e.key === 'ArrowRight') nextPhoto();
+  else if (e.key === 'ArrowLeft') prevPhoto();
+});
+</script>
+</body>
+</html>
