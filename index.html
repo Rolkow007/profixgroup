@@ -995,19 +995,19 @@ body.lightbox-open { overflow: hidden; }
           <div class="section-label">Írjon nekünk</div>
           <h2 class="section-title" style="margin-bottom:8px">Ajánlatkérés</h2>
           <p class="section-subtitle" style="margin-bottom:32px">Töltse ki az űrlapot és 24 órán belül felvesszük Önnel a kapcsolatot.</p>
-          <div class="contact-form">
+          <form class="contact-form" action="https://formspree.io/f/mjgjlbaj" method="POST">
             <div class="form-row">
-              <div class="form-group"><label>Név *</label><input type="text" placeholder="Teljes neve"></div>
-              <div class="form-group"><label>Telefonszám *</label><input type="tel" placeholder="+36 xx xxx xxxx"></div>
+              <div class="form-group"><label for="nev">Név *</label><input id="nev" type="text" name="név" placeholder="Teljes neve" required></div>
+              <div class="form-group"><label for="tel">Telefonszám *</label><input id="tel" type="tel" name="telefonszám" placeholder="+36 xx xxx xxxx" required></div>
             </div>
-            <div class="form-group"><label>E-mail cím *</label><input type="email" placeholder="pelda@email.hu"></div>
+            <div class="form-group"><label for="email">E-mail cím *</label><input id="email" type="email" name="email" placeholder="pelda@email.hu" required></div>
             <div class="form-group">
               <label>Projekt típusa</label>
-              <select><option value="">Válasszon...</option><option>Új építés</option><option>Felújítás</option><option>Ipari / Kereskedelmi építés</option><option>Szigetelés / Homlokzat</option><option>Gépészeti munkák</option><option>Tervezés / Tanácsadás</option><option>Egyéb</option></select>
+              <select name="projekt_tipusa"><option value="">Válasszon...</option><option>Kőműves munkák</option><option>Homlokzati hőszigetelés</option><option>Hidegburkolás</option><option>Térkövezés</option><option>Egyéb</option></select>
             </div>
-            <div class="form-group"><label>Üzenet</label><textarea placeholder="Írja le projektje részleteit, kérdéseit..."></textarea></div>
-            <button class="btn btn-primary" style="align-self:flex-start" onclick="alert('Köszönjük megkeresését! Hamarosan felvesszük Önnel a kapcsolatot.')">Üzenet küldése →</button>
-          </div>
+            <div class="form-group"><label for="uzenet">Üzenet</label><textarea id="uzenet" name="üzenet" placeholder="Írja le projektje részleteit, kérdéseit..."></textarea></div>
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start">Üzenet küldése →</button>
+          </form>
         </div>
         <div class="contact-info">
           <div class="contact-info-card">
