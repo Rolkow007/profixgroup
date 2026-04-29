@@ -996,7 +996,7 @@ body.lightbox-open { overflow: hidden; }
           <div class="section-label">Írjon nekünk</div>
           <h2 class="section-title" style="margin-bottom:8px">Ajánlatkérés</h2>
           <p class="section-subtitle" style="margin-bottom:32px">Töltse ki az űrlapot és 24 órán belül felvesszük Önnel a kapcsolatot.</p>
-          <form class="contact-form" name="ajanlatkeres" method="POST" data-netlify="true">
+          <form class="contact-form" name="ajanlatkeres" method="POST" data-netlify="true" data-netlify-recaptcha="true">
             <div class="form-row">
               <div class="form-group"><label for="nev">Név *</label><input id="nev" type="text" name="név" placeholder="Teljes neve" required></div>
               <div class="form-group"><label for="tel">Telefonszám *</label><input id="tel" type="tel" name="telefonszám" placeholder="+36 xx xxx xxxx" required></div>
@@ -1007,6 +1007,7 @@ body.lightbox-open { overflow: hidden; }
               <select name="projekt_tipusa"><option value="">Válasszon...</option><option>Kőműves munkák</option><option>Homlokzati hőszigetelés</option><option>Hidegburkolás</option><option>Térkövezés</option><option>Egyéb</option></select>
             </div>
             <div class="form-group"><label for="uzenet">Üzenet</label><textarea id="uzenet" name="üzenet" placeholder="Írja le projektje részleteit, kérdéseit..."></textarea></div>
+            <div data-netlify-recaptcha="true"></div>
             <button type="submit" class="btn btn-primary" style="align-self:flex-start">Üzenet küldése →</button>
           </form>
           <div id="form-success" style="display:none;margin-top:24px;padding:20px 24px;background:var(--navy-50);border-left:4px solid var(--accent);border-radius:var(--radius);color:var(--navy-700);font-size:1rem;line-height:1.6;">
@@ -1252,13 +1253,18 @@ document.addEventListener('keydown', e => {
 const contactForm = document.querySelector('form[name="ajanlatkeres"]');
 contactForm.addEventListener('submit', e => {
   e.preventDefault();
+  const recaptchaResponse = contactForm.querySelector('[name="g-recaptcha-response"]');
+  if (recaptchaResponse && !recaptchaResponse.value) {
+    alert('Kérjük, igazolja, hogy nem robot!');
+    return;
+  }
   fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(contactForm)).toString() })
     .then(() => {
-      contactForm.reset();
+      contactForm.style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     })
     .catch(() => {
-      contactForm.reset();
+      contactForm.style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     });
 });
