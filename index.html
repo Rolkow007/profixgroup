@@ -170,29 +170,24 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 700px;
   display: flex; align-items: center;
   padding-top: var(--nav-h);
   position: relative; overflow: hidden;
-  background: linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 40%, var(--navy-700) 100%);
+  background: linear-gradient(135deg, rgba(9,28,51,0.65), rgba(9,28,51,0.65)), url('pictures/Profix-fejles.png') center/cover no-repeat;
 }
 .hero::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 75% 30%, rgba(33,118,174,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 15% 80%, rgba(33,118,174,0.08) 0%, transparent 50%);
+  content: ''; position: absolute; inset: 0; opacity: 0;
 }
 .hero::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
-  background: linear-gradient(to top, var(--white), transparent);
+  display: none;
 }
 .hero-pattern {
-  position: absolute; inset: 0; opacity: 0.04;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.15) 35px, rgba(255,255,255,0.15) 36px);
+  display: none;
 }
 .hero-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center; position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; 
+  gap: 32px; text-align: center; position: relative; z-index: 2;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
@@ -210,49 +205,27 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 5vw, 3.8rem);
-  line-height: 1.12; margin-bottom: 24px;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.2; margin-bottom: 24px;
   color: var(--white);
-  animation: fadeUp 0.6s 0.1s ease both;
 }
-.hero h1 .highlight { color: var(--navy-200); }
+.hero h1 .highlight { display: none; }
 .hero-desc {
-  font-size: 1.15rem; color: var(--navy-200); max-width: 480px;
-  margin-bottom: 40px; line-height: 1.8;
-  animation: fadeUp 0.6s 0.2s ease both;
+  display: none;
+}
+.hero-badge {
+  display: none;
+}
+.hero-badge-dot {
+  display: none;
 }
 .hero-actions {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  animation: fadeUp 0.6s 0.3s ease both;
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
 }
-.hero-visual { position: relative; animation: fadeUp 0.8s 0.4s ease both; }
+.hero-visual { display: none; }
 .hero-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px; padding: 40px;
-  backdrop-filter: blur(10px);
+  display: none;
 }
-.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-family: var(--font-display);
-  font-size: 3rem; font-weight: 800;
-  color: var(--white); line-height: 1; margin-bottom: 6px;
-}
-.hero-stat-num span { color: var(--navy-300); }
-.hero-stat-label {
-  font-size: 0.85rem; color: var(--navy-300);
-  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
-}
-.hero-stat-divider { grid-column: span 2; height: 1px; background: rgba(255,255,255,0.08); }
-.hero-trust {
-  margin-top: 32px; padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex; align-items: center; gap: 12px;
-}
-.hero-trust-stars { display: flex; gap: 2px; }
-.hero-trust-stars svg { width: 18px; height: 18px; fill: var(--accent); }
-.hero-trust-text { font-size: 0.88rem; color: var(--navy-300); }
 
 /* SERVICES */
 .services-grid {
@@ -575,11 +548,11 @@ body.lightbox-open { overflow: hidden; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
+  .hero { min-height: 500px; padding: 120px 0 80px; }
   .hero-grid, .why-grid, .about-intro, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .services-grid, .ref-grid, .about-values { grid-template-columns: 1fr 1fr; }
   .services-detail-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .hero-visual { order: -1; }
   .about-photo-wrap { max-width: 480px; margin: 0 auto; }
 }
 @media (max-width: 640px) {
@@ -597,9 +570,10 @@ body.lightbox-open { overflow: hidden; }
   .mobile-toggle { display: flex; }
   .section { padding: 64px 0; }
   .cta-banner { padding: 40px 24px; }
-  .hero { min-height: auto; padding: 120px 0 80px; }
-  .hero-stats { gap: 20px; }
-  .hero-stat-num { font-size: 2.2rem; }
+  .hero { min-height: 350px; padding: 100px 0 60px; background-size: cover; background-position: center; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; text-align: center; }
   .about-visual { grid-template-columns: 1fr; }
   .lightbox { padding: 16px; }
   .lightbox-btn { width: 44px; height: 44px; font-size: 1.4rem; }
@@ -638,48 +612,10 @@ body.lightbox-open { overflow: hidden; }
     <div class="container">
       <div class="hero-grid">
         <div>
-          <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            Elérhető vagyunk új projektekre
-          </div>
-          <h1>Építkezés<br><span class="highlight">Felsőfokon!</span></h1>
-          <p class="hero-desc">A PROFIX GROUP KFT. több évtizedes tapasztalattal áll ügyfelei rendelkezésére az építőipar minden területén. Megbízhatóság, minőség, precizitás.</p>
+          <h1>Megbízható kivitelezés</h1>
           <div class="hero-actions">
             <a href="#" class="btn btn-white" data-page="contact">Ajánlatot kérek →</a>
-            <a href="#" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white);" data-page="portfolio">Referenciáink</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-card">
-            <div class="hero-stats">
-              <div class="hero-stat">
-                <div class="hero-stat-num">15<span>+</span></div>
-                <div class="hero-stat-label">Év Tapasztalat</div>
-              </div>
-              <div class="hero-stat">
-                <div class="hero-stat-num">250<span>+</span></div>
-                <div class="hero-stat-label">Projekt</div>
-              </div>
-              <div class="hero-stat-divider"></div>
-              <div class="hero-stat">
-                <div class="hero-stat-num">98<span>%</span></div>
-                <div class="hero-stat-label">Elégedettség</div>
-              </div>
-              <div class="hero-stat">
-                <div class="hero-stat-num">30<span>+</span></div>
-                <div class="hero-stat-label">Szakember</div>
-              </div>
-            </div>
-            <div class="hero-trust">
-              <div class="hero-trust-stars">
-                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.03L10 12.9l-4.51 2.4.86-5.03L2.7 6.7l4.91-.86L10 1z"/></svg>
-              </div>
-              <span class="hero-trust-text">5.0 — Ügyfeleink értékelése</span>
-            </div>
+            <a href="#" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: var(--white);" data-page="portfolio">Referenciáink</a>
           </div>
         </div>
       </div>
