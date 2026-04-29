@@ -902,9 +902,38 @@ body.lightbox-open { overflow: hidden; }
           <div class="ref-card" data-gallery="6">
             <div class="ref-card-img">
               <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>3 fotó</span>
-              <img src="burkolas/burkolas-munka-7/att.C6CK-0rnS2Rl7vPWzoXveOQ7HaDp6xnaML3Rh2YwHeA.JPG" alt="Burkolási munka 7">
+              <img src="burkolas/burkolas-munka-7/att.C6CK-0rnS2Rl7vPWzoXveOQ7HaDp6xnaML3Rh2YwHeA.JPG" alt="Hídburkolás - Dévaványa">
             </div>
             <div class="ref-card-body"><div class="ref-card-tag">Hidegburkolás</div><h3>Burkolási munka 7</h3><p>Teljes körű burkolási projekt.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="ref-group">
+        <div class="ref-group-header">
+          <div class="section-label">Homlokzati hőszigetelés</div>
+          <h2 class="section-title">Hőszigetelési munkáink</h2>
+        </div>
+        <div class="ref-grid">
+          <div class="ref-card" data-gallery="7">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>4 fotó</span>
+              <img src="hoszigeteles/hoszigeteles-munka-1/470169763_1173397094156518_2750846143043605689_n.jpg" alt="Homlokzatszigetelés">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hőszigetelés</div><h3>Homlokzatszigetelés</h3><p>Teljes körű homlokzati hőszigetelési projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="8">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>8 fotó</span>
+              <img src="hoszigeteles/hoszigeteles-munka-2/574345813_122096410317113799_204169453927891101_n.jpg" alt="Homlokzatszigetelés Békéscsaba">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hőszigetelés</div><h3>Homlokzatszigetelés – Békéscsaba</h3><p>Teljes körű homlokzati hőszigetelési projekt.</p></div>
+          </div>
+          <div class="ref-card" data-gallery="9">
+            <div class="ref-card-img">
+              <span class="ref-card-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>9 fotó</span>
+              <img src="hoszigeteles/hoszigeteles-munka-3/IMG_20240628_070233.jpg" alt="Magvető tornaterem homlokzat">
+            </div>
+            <div class="ref-card-body"><div class="ref-card-tag">Hőszigetelés</div><h3>Magvető tornaterem – homlokzat</h3><p>Középület homlokzati hőszigetelése.</p></div>
           </div>
         </div>
       </div>
@@ -1148,9 +1177,8 @@ document.querySelectorAll('.service-card, .service-detail-card, .ref-card, .why-
 });
 
 /* GALLERIES */
-const BURKOLAS = 'burkolas/';
 const galleries = [
-  { title: 'Burkolási munka 1', photos: [
+  { title: 'Burkolási munka 1', base: 'burkolas/', photos: [
     'burkolas-munka-1/att.0-DaDzz3XdCfNum1qZ5Ju_Ja1IBfi_IcfM2u5dynfCY.JPG',
     'burkolas-munka-1/att.5dpXXiQpbHXktPyPMB0qd0Rx88M3fE3-EntGeU2f17Y.JPG',
     'burkolas-munka-1/att.IuAmGNJ7jgeDplQmdbi_1BLmx-vUAxnXGb81U12_h4I.JPG',
@@ -1158,23 +1186,23 @@ const galleries = [
     'burkolas-munka-1/att.ScO1KonaqhkV4qo_wlYlNDBxYJ4XASQcQROi6EM-Cr8.JPG',
     'burkolas-munka-1/att.w0TpBLbdkAzxg9yyqRu4WVz61x49_rqLss4SB_XSR7A.JPG',
   ]},
-  { title: 'Burkolási munka 2', photos: [
+  { title: 'Burkolási munka 2', base: 'burkolas/', photos: [
     'burkolas-munka-2/att.0DLjCCDdrbdlMkmwE8NA3LQrU7Ygkreukgkleu6SMgo.JPG',
     'burkolas-munka-2/att.0pPvDvvj0iq--gyUjhf8HfhpBPnm8IHd4jnDkTXDqt4.JPG',
     'burkolas-munka-2/att._oKQEvmWZrZ6x2Os8IYRa0I9z4NOISY8hya79xds3Bo.JPG',
   ]},
-  { title: 'Burkolási munka 3', photos: [
+  { title: 'Burkolási munka 3', base: 'burkolas/', photos: [
     'burkolas-munka-3/att.1pefS_AnDvtba8yhE4UJO_DtasH4UmnlvEX_d-g2QJk.JPG',
     'burkolas-munka-3/att.S7kwudcq9xUbVuCPZ1byg09uY9X9eb5h_qZjdZj3tuI.JPG',
     'burkolas-munka-3/att.iDTuLehyEYIvQqgGpEHikU9iheVBOFZloTfEJt3LnHQ.JPG',
   ]},
-  { title: 'Burkolási munka 4', photos: [
+  { title: 'Burkolási munka 4', base: 'burkolas/', photos: [
     'burkolas-munka-4/att.6nC46Yu_0t3QetnjreuXOaKeJ5oGKoIPKirvf3W64NI.JPG',
     'burkolas-munka-4/att.IBOJ5DQkuiUuCROpa2Mh_jhvb6o78-5yBW0-dvNHUg0.JPG',
     'burkolas-munka-4/att.Nn1kcSdu6KbQz9VRe_7cHKAPbQ1KcPbWERGaPEf43gA.JPG',
     'burkolas-munka-4/att.brx7ezBfeh5RAKJ90BuBA6uJc1osH1HDlBvPe4Tvo1s.JPG',
   ]},
-  { title: 'Burkolási munka 5', photos: [
+  { title: 'Burkolási munka 5', base: 'burkolas/', photos: [
     'burkolas-munka-5/att.HU9qw_FHvpYBORGcpb_IUXk1I5Zy93ng-vNyS5IlMTI.JPG',
     'burkolas-munka-5/att.Q2nT26h_1_R4cHGVaZHTf3BAcZCtAJwZdpZ5PDi6BmQ.JPG',
     'burkolas-munka-5/att.QV2L5EvfFLTT_bMpCYdzETIYS6LeNezAVse2EP56y14.JPG',
@@ -1186,17 +1214,44 @@ const galleries = [
     'burkolas-munka-5/att.shZIICx8I_-YwBe_dQqaoriNtWVV-YOayTrlldpekDY.JPG',
     'burkolas-munka-5/att.yGJT60RwIkjWW7COJa2nKQY18Ah4OTv-RbumGEjizpw.JPG',
   ]},
-  { title: 'Burkolási munka 6', photos: [
+  { title: 'Burkolási munka 6', base: 'burkolas/', photos: [
     'burkolas-munka-6/att.dYoUfRppDQFF5PuuBJRpw5y9hFmOQKrgejnBBtB_S-8.JPG',
     'burkolas-munka-6/att.fZUslLjoPVJw4rRqTkMb0ZHes9ZFTY1uDOliW2vW8wI.JPG',
     'burkolas-munka-6/att.hZYr9mZy4lQRfpxb4_bDye_YQ74Y8ICOxvXW0KYkuqE.JPG',
     'burkolas-munka-6/att.mRg_IeFxv-KXu7CdKCKo7lfmldKChmVwkEClUwYsoR0.JPG',
     'burkolas-munka-6/att.wjPxOmd2xyNgPoRrUptU_tDXSnKc8stn4S9BSM5W2IU.JPG',
   ]},
-  { title: 'Burkolási munka 7', photos: [
+  { title: 'Burkolási munka 7', base: 'burkolas/', photos: [
     'burkolas-munka-7/att.C6CK-0rnS2Rl7vPWzoXveOQ7HaDp6xnaML3Rh2YwHeA.JPG',
     'burkolas-munka-7/att.CllGuKeuH5esnOEw0cDD04VFvgd3CJ649WTK0sF_iu8.JPG',
     'burkolas-munka-7/att.NLvnxx6NLt0mopS-YYC5f9Tra1n96sXbNEsbElO2Nq8.JPG',
+  ]},
+  { title: 'Homlokzatszigetelés', base: 'hoszigeteles/', photos: [
+    'hoszigeteles-munka-1/470169763_1173397094156518_2750846143043605689_n.jpg',
+    'hoszigeteles-munka-1/470199250_1173396920823202_5979605276224048982_n.jpg',
+    'hoszigeteles-munka-1/470470107_1173396967489864_4110319357132183811_n.jpg',
+    'hoszigeteles-munka-1/470533740_1173396857489875_4115522044282336507_n.jpg',
+  ]},
+  { title: 'Homlokzatszigetelés – Békéscsaba', base: 'hoszigeteles/', photos: [
+    'hoszigeteles-munka-2/574345813_122096410317113799_204169453927891101_n.jpg',
+    'hoszigeteles-munka-2/575871681_122096410083113799_1183661863617634339_n.jpg',
+    'hoszigeteles-munka-2/576549737_122096408937113799_8253366656357249578_n.jpg',
+    'hoszigeteles-munka-2/577017582_122096410239113799_8736289108264714279_n.jpg',
+    'hoszigeteles-munka-2/577027147_122096408595113799_8966148355464994348_n.jpg',
+    'hoszigeteles-munka-2/577027157_122096409423113799_8212369240149881074_n.jpg',
+    'hoszigeteles-munka-2/577038875_122096410155113799_444119806189884965_n.jpg',
+    'hoszigeteles-munka-2/577059453_122096409015113799_842756588895059056_n.jpg',
+  ]},
+  { title: 'Magvető tornaterem – homlokzat', base: 'hoszigeteles/', photos: [
+    'hoszigeteles-munka-3/IMG_20240628_070233.jpg',
+    'hoszigeteles-munka-3/IMG_20240628_070235.jpg',
+    'hoszigeteles-munka-3/IMG_20240628_124325.jpg',
+    'hoszigeteles-munka-3/IMG_20240628_124331.jpg',
+    'hoszigeteles-munka-3/IMG_20240628_124334.jpg',
+    'hoszigeteles-munka-3/IMG_20240704_102251.jpg',
+    'hoszigeteles-munka-3/IMG_20240725_144413.jpg',
+    'hoszigeteles-munka-3/IMG_20240725_144422.jpg',
+    'hoszigeteles-munka-3/IMG_20240725_154127.jpg',
   ]},
 ];
 
@@ -1209,7 +1264,7 @@ let galIdx = 0, photoIdx = 0;
 
 function renderPhoto() {
   const g = galleries[galIdx];
-  lbImg.src = BURKOLAS + g.photos[photoIdx];
+  lbImg.src = g.base + g.photos[photoIdx];
   lbImg.alt = g.title + ' — ' + (photoIdx + 1) + '. fotó';
   lbTitle.textContent = g.title;
   lbIdx.textContent = photoIdx + 1;
