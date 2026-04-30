@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adatkezelési Tájékoztató – ProFix Group Kft.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2e4a;
+    --blue: #2563a8;
+    --light-blue: #e8f0fb;
+    --accent: #c8a84b;
+    --text: #2d3748;
+    --muted: #64748b;
+    --border: #d1dce8;
+    --bg: #f7f9fc;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* Header */
+  header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 60px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(37, 99, 168, 0.25);
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(200, 168, 75, 0.12);
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    color: var(--white);
+  }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .meta-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.02em;
+  }
+
+  .meta-pill strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* TOC */
+  .toc-bar {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .toc-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .toc-inner::-webkit-scrollbar { display: none; }
+
+  .toc-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 14px 16px 14px 0;
+    border-right: 1px solid var(--border);
+    margin-right: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .toc-inner a {
+    padding: 14px 12px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .toc-inner a:hover {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  /* Main content */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .section:hover {
+    box-shadow: 0 4px 20px rgba(26,46,74,0.08);
+  }
+
+  .section-num {
+    position: absolute;
+    top: 36px; right: 36px;
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--light-blue);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--light-blue);
+    position: relative;
+  }
+
+  .section h2::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 100%;
+    background: var(--blue);
+    position: absolute;
+    left: -40px;
+    top: 0;
+    bottom: 14px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .section h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--blue);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+  }
+
+  p {
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .data-table td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+    width: 200px;
+    white-space: nowrap;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* Bullet list */
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+
+  .bullet-list li {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+
+  .bullet-list li:last-child { border-bottom: none; }
+
+  .bullet-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 9px;
+  }
+
+  /* Rights grid */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .right-card {
+    background: var(--light-blue);
+    border-radius: 8px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--blue);
+  }
+
+  .right-card h4 {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .right-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* NAIH box */
+  .naih-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-top: 16px;
+  }
+
+  .naih-box .naih-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--accent);
+  }
+
+  .naih-box table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .naih-box td {
+    padding: 5px 0;
+    color: rgba(255,255,255,0.85);
+    vertical-align: top;
+  }
+
+  .naih-box td:first-child {
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    width: 80px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-right: 16px;
+  }
+
+  .naih-box a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff8e7, #fef3cd);
+    border: 1px solid #f0d080;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  /* Consent box */
+  .consent-demo {
+    background: var(--light-blue);
+    border: 2px dashed var(--blue);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+
+  .consent-demo p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .consent-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 28px 32px;
+    font-size: 13px;
+  }
+
+  footer strong {
+    color: var(--white);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .section { padding: 28px 24px; }
+    .section h2::before { left: -24px; }
+    .section-num { font-size: 38px; top: 28px; right: 24px; }
+    .rights-grid { grid-template-columns: 1fr; }
+    .data-table td:first-child { width: 130px; }
+    .toc-bar { display: none; }
+  }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Scroll animation */
+  .section {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1)  { animation-delay: 0.05s; }
+  .section:nth-child(2)  { animation-delay: 0.10s; }
+  .section:nth-child(3)  { animation-delay: 0.15s; }
+  .section:nth-child(4)  { animation-delay: 0.20s; }
+  .section:nth-child(5)  { animation-delay: 0.25s; }
+  .section:nth-child(6)  { animation-delay: 0.30s; }
+  .section:nth-child(7)  { animation-delay: 0.35s; }
+  .section:nth-child(8)  { animation-delay: 0.40s; }
+  .section:nth-child(9)  { animation-delay: 0.45s; }
+  .section:nth-child(10) { animation-delay: 0.50s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">
+      <div class="logo-icon">P</div>
+      <span class="logo-text">ProFix Group Kft.</span>
+    </div>
+    <h1>Adatkezelési Tájékoztató</h1>
+    <p style="color:rgba(255,255,255,0.65); font-size:15px; margin-top:8px;">Az Ön személyes adatainak védelme kiemelt fontosságú számunkra.</p>
+    <div class="header-meta">
+      <span class="meta-pill"><strong>GDPR</strong> megfelelő</span>
+      <span class="meta-pill">Hatályos: <strong>2025. május 1.</strong></span>
+      <span class="meta-pill">Verzió: <strong>1.0</strong></span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="Tartalomjegyzék">
+  <div class="toc-inner">
+    <span class="toc-label">Tartalom</span>
+    <a href="#s1">Adatkezelő</a>
+    <a href="#s2">Kezelt adatok</a>
+    <a href="#s3">Cél</a>
+    <a href="#s4">Jogalap</a>
+    <a href="#s5">Tárolás</a>
+    <a href="#s6">Megőrzés</a>
+    <a href="#s7">Továbbítás</a>
+    <a href="#s8">Jogok</a>
+    <a href="#s9">Jogorvoslat</a>
+    <a href="#s10">Módosítás</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="section" id="s1">
+    <span class="section-num">01</span>
+    <h2>Az adatkezelő adatai</h2>
+    <table class="data-table">
+      <tr><td>Cégnév</td><td>ProFix Group Kft.</td></tr>
+      <tr><td>Székhely</td><td>5711 Gyula, Táncsics u. 51.</td></tr>
+      <tr><td>Adószám</td><td>32934371-2-04</td></tr>
+      <tr><td>Cégjegyzékszám</td><td>04-09-017958</td></tr>
+      <tr><td>E-mail</td><td><a href="mailto:info@profixgroup.hu" style="color:var(--blue)">info@profixgroup.hu</a></td></tr>
+    </table>
+    <p style="font-size:14px; color:var(--muted); margin-top:12px;">(a továbbiakban: Adatkezelő)</p>
+  </div>
+
+  <div class="section" id="s2">
+    <span class="section-num">02</span>
+    <h2>A kezelt személyes adatok köre</h2>
+    <p>Az Adatkezelő a weboldalon elérhető ajánlatkérő űrlap kitöltése során az alábbi személyes adatokat kezeli:</p>
+    <ul class="bullet-list">
+      <li>Teljes név</li>
+      <li>E-mail cím</li>
+      <li>Telefonszám</li>
+      <li>Technikai adatok (IP-cím, böngésző- és eszközadatok, interakciós minták) – a Google reCAPTCHA szolgáltatás által automatikusan gyűjtve, spam- és visszaélés-megelőzési célból</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s3">
+    <span class="section-num">03</span>
+    <h2>Az adatkezelés célja</h2>
+    <p>Az Adatkezelő a fenti személyes adatokat kizárólag az alábbi célból kezeli:</p>
+    <ul class="bullet-list">
+      <li>az Ön által benyújtott ajánlatkérés feldolgozása,</li>
+      <li>az ajánlat elkészítése és megküldése,</li>
+      <li>kapcsolatfelvétel és kommunikáció az ajánlatkérés kapcsán.</li>
+    </ul>
+    <div class="highlight-box">
+      <strong>Fontos:</strong> A személyes adatokat az Adatkezelő más célra nem használja fel, harmadik személynek nem adja át, és marketing célból nem kezeli.
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <span class="section-num">04</span>
+    <h2>Az adatkezelés jogalapja</h2>
+    <p>Az adatkezelés jogalapja az Ön <strong>önkéntes hozzájárulása</strong> [az Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR) 6. cikk (1) bekezdés a) pontja alapján], amelyet az ajánlatkérő űrlap elküldésével és a hozzájáruláshoz tartozó jelölőnégyzet bejelölésével ad meg.</p>
+    <p>A hozzájárulás megadása önkéntes. A hozzájárulás megtagadása esetén az ajánlatkérés nem teljesíthető.</p>
+    <div class="consent-demo">
+      <p>📋 Minta jelölőnégyzet az ajánlatkérő formhoz</p>
+      <label class="consent-label">
+        <input type="checkbox">
+        <span>Elolvastam és elfogadom az <a href="#" style="color:var(--blue); font-weight:600;">Adatkezelési Tájékoztatót</a>. Hozzájárulok személyes adataim ajánlatkérés céljából történő kezeléséhez.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <span class="section-num">05</span>
+    <h2>Az adatok tárolásának módja és helye</h2>
+    <p>A megadott személyes adatok kizárólag az Adatkezelő <strong>e-mail rendszerében</strong> kerülnek tárolásra. Az adatokat harmadik fél által üzemeltetett CRM-rendszer, adatbázis vagy felhőszolgáltatás nem tárolja.</p>
+    <p>Az Adatkezelő gondoskodik az adatok megfelelő technikai védelméről, és megteszi azokat a biztonsági intézkedéseket, amelyek az adatok jogosulatlan hozzáférés, megváltoztatás, továbbítás, nyilvánosságra hozatal, törlés vagy megsemmisítés ellen védenek.</p>
+  </div>
+
+  <div class="section" id="s6">
+    <span class="section-num">06</span>
+    <h2>Az adatok megőrzési ideje</h2>
+    <p>Az Adatkezelő az Ön személyes adatait az ajánlatkérés lebonyolításának befejezéséig, de <strong>legfeljebb 1 (egy) évig</strong> kezeli, kivéve, ha Ön korábban kéri azok törlését, vagy ha jogszabály hosszabb megőrzési időt ír elő.</p>
+  </div>
+
+  <div class="section" id="s7">
+    <span class="section-num">07</span>
+    <h2>Adattovábbítás, adatfeldolgozók</h2>
+    <p>Az Adatkezelő a személyes adatokat harmadik személynek – ideértve más vállalkozásokat, szervezeteket és hatóságokat – nem adja át, kivéve, ha arra jogszabály kötelezi, illetve az alábbi kivétellel:</p>
+
+    <div class="highlight-box" style="margin: 16px 0;">
+      <strong>🤖 Google reCAPTCHA</strong><br><br>
+      Az ajánlatkérő űrlap spam elleni védelme érdekében a weboldal a <strong>Google LLC</strong> által üzemeltetett <strong>reCAPTCHA</strong> szolgáltatást alkalmazza. A szolgáltatás használata során az érintett egyes technikai adatai (pl. IP-cím, böngészőadatok, egérmozgás-minták) automatikusan továbbításra kerülnek a Google szervereire – beleértve az Európai Gazdasági Térségen kívüli szervereket is.<br><br>
+      Az adattovábbítás jogalapja: az Adatkezelő jogos érdeke a visszaélések és automatizált spamküldés megelőzéséhez [GDPR 6. cikk (1) bekezdés f) pont].<br><br>
+      A Google adatkezelési gyakorlatáról bővebben:
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--blue); font-weight:600;">policies.google.com/privacy</a>
+      &nbsp;|&nbsp;
+      <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:var(--blue); font-weight:600;">Szolgáltatási feltételek</a>
+    </div>
+
+    <p>Az Adatkezelő a Google LLC-n kívül más adatfeldolgozót nem alkalmaz a jelen tájékoztatóban meghatározott adatkezelési tevékenységhez.</p>
+  </div>
+
+  <div class="section" id="s8">
+    <span class="section-num">08</span>
+    <h2>Az Ön jogai</h2>
+    <p>Az alkalmazandó adatvédelmi jogszabályok értelmében Önt az alábbi jogok illetik meg:</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <h4>🔍 Hozzáférési jog</h4>
+        <p>Tájékoztatást kérhet arról, hogy kezelik-e az adatait, milyen adatokat, milyen céllal és mennyi ideig.</p>
+      </div>
+      <div class="right-card">
+        <h4>✏️ Helyesbítési jog</h4>
+        <p>Kérheti a pontatlan személyes adatai helyesbítését.</p>
+      </div>
+      <div class="right-card">
+        <h4>🗑️ Törlési jog</h4>
+        <p>Kérheti adatai törlését, ha az adatkezelésre már nincs szükség, vagy visszavonja hozzájárulását.</p>
+      </div>
+      <div class="right-card">
+        <h4>⏸️ Korlátozási jog</h4>
+        <p>Kérheti az adatkezelés korlátozását bizonyos esetekben, pl. ha vitatja az adatok pontosságát.</p>
+      </div>
+      <div class="right-card">
+        <h4>📦 Adathordozhatóság</h4>
+        <p>Jogosult az adatait géppel olvasható formátumban megkapni vagy más adatkezelőhöz továbbíttatni.</p>
+      </div>
+      <div class="right-card">
+        <h4>↩️ Visszavonási jog</h4>
+        <p>Hozzájárulását bármikor visszavonhatja. Ez nem érinti a visszavonás előtti adatkezelés jogszerűségét.</p>
+      </div>
+    </div>
+    <p style="margin-top:18px; font-size:14px; color:var(--muted);">Jogait az adatkezelő fenti elérhetőségein gyakorolhatja. Az Adatkezelő a kérelemre 30 napon belül válaszol.</p>
+  </div>
+
+  <div class="section" id="s9">
+    <span class="section-num">09</span>
+    <h2>Jogorvoslati lehetőségek</h2>
+    <p>Ha úgy ítéli meg, hogy az Adatkezelő megsértette az adatvédelmi jogait, panasszal élhet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál:</p>
+    <div class="naih-box">
+      <div class="naih-title">Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</div>
+      <table>
+        <tr><td>Cím</td><td>1055 Budapest, Falk Miksa utca 9–11.</td></tr>
+        <tr><td>Posta</td><td>1363 Budapest, Pf. 9.</td></tr>
+        <tr><td>Tel.</td><td>+36 (1) 391-1400</td></tr>
+        <tr><td>E-mail</td><td><a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></td></tr>
+        <tr><td>Web</td><td><a href="https://www.naih.hu" target="_blank" rel="noopener">www.naih.hu</a></td></tr>
+      </table>
+    </div>
+    <p style="margin-top:16px;">Emellett bírósághoz is fordulhat az adatvédelmi jogai megsértése esetén. A per az Ön lakóhelye vagy tartózkodási helye szerint illetékes törvényszék előtt is megindítható.</p>
+  </div>
+
+  <div class="section" id="s10">
+    <span class="section-num">10</span>
+    <h2>A tájékoztató módosítása</h2>
+    <p>Az Adatkezelő fenntartja a jogot, hogy jelen Adatkezelési Tájékoztatót egyoldalúan módosítsa. A módosítás hatályba lépéséről az Adatkezelő a weboldalán keresztül tájékoztatja az érintetteket.</p>
+    <p style="margin-top:20px; text-align:right; font-size:14px; color:var(--muted);">
+      Gyula, 2025. május 1.<br>
+      <strong style="color:var(--navy);">ProFix Group Kft.</strong>
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <strong>ProFix Group Kft.</strong> &nbsp;|&nbsp; 5711 Gyula, Táncsics u. 51. &nbsp;|&nbsp; Adószám: 32934371-2-04<br>
+  <span style="margin-top:6px; display:block;">© 2025 ProFix Group Kft. – Minden jog fenntartva.</span>
+</footer>
+
+</body>
+</html>

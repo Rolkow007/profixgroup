@@ -516,6 +516,10 @@ body.lightbox-open { overflow: hidden; }
 }
 .form-group textarea { min-height: 140px; resize: vertical; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.9rem; line-height: 1.5; color: var(--gray-700); font-weight: 400; }
+.form-consent input[type="checkbox"] { margin-top: 4px; flex-shrink: 0; cursor: pointer; width: 18px; height: 18px; accent-color: var(--navy-600); }
+.form-consent a { color: var(--navy-600); text-decoration: underline; }
+.form-consent a:hover { color: var(--navy-700); }
 
 .contact-info { display: flex; flex-direction: column; gap: 28px; }
 .contact-info-card { display: flex; gap: 16px; align-items: flex-start; padding: 24px; background: var(--gray-50); border-radius: var(--radius); }
@@ -1014,6 +1018,10 @@ body.lightbox-open { overflow: hidden; }
             </div>
             <div class="form-group"><label for="uzenet">Üzenet</label><textarea id="uzenet" name="üzenet" placeholder="Írja le projektje részleteit, kérdéseit..."></textarea></div>
             <div data-netlify-recaptcha="true"></div>
+            <label class="form-consent">
+              <input type="checkbox" id="adatvedelem" name="adatvedelem" required>
+              <span>Elfogadom az <a href="adatkezelesi-tajekoztato.html" target="_blank" rel="noopener">Adatvédelmi tájékoztatót</a> *</span>
+            </label>
             <button type="submit" class="btn btn-primary" style="align-self:flex-start">Üzenet küldése →</button>
           </form>
           <div id="form-success" style="display:none;margin-top:24px;padding:20px 24px;background:var(--navy-50);border-left:4px solid var(--accent);border-radius:var(--radius);color:var(--navy-700);font-size:1rem;line-height:1.6;">
@@ -1307,6 +1315,11 @@ document.addEventListener('keydown', e => {
 const contactForm = document.querySelector('form[name="ajanlatkeres"]');
 contactForm.addEventListener('submit', e => {
   e.preventDefault();
+  const adatvedelem = contactForm.querySelector('#adatvedelem');
+  if (!adatvedelem.checked) {
+    alert('Adatvédelmi tájékoztató elfogadása kötelező!');
+    return;
+  }
   const recaptchaResponse = contactForm.querySelector('[name="g-recaptcha-response"]');
   if (recaptchaResponse && !recaptchaResponse.value) {
     alert('Kérjük, igazolja, hogy nem robot!');
